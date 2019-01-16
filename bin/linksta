@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+begin
+  require "linksta/cli"
+  Linksta::CLI.start
+rescue Interrupt
+  puts "\nQuitting..."
+  exit 1
+end
