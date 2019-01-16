@@ -2,15 +2,15 @@
 
 # Linksta
 
-**Link checker for BBC Radio & Music sites.**
+**Link checker for your website.**
 
 The idea is to quickly check a page for broken links by doing a status check on all the relative URL's on the page.
 
 There are 4 parts to this tool, the URL, the base URL, the regex and the filename.  
 
-* **URL** is the page that you want to check for broken links, e.g `www.bbc.co.uk/radi04`
-* **Base URL** is used with the relative URL from the regex to create a full URL, e.g `www.bbc.co.uk`
-* **Regex** is the point of the URL that you want to keep from the regex, e.g `bbc.co.uk/radio/new`, specifying `/radio` would create `/radio/new`.  
+* **URL** is the page that you want to check for broken links, e.g `www.foo.co.uk/foo`
+* **Base URL** is used with the relative URL from the regex to create a full URL, e.g `www.foo.co.uk`
+* **Regex** is the point of the URL that you want to keep from the regex, e.g `foo.co.uk/radio/new`, specifying `/foo` would create `/foo/new`.  
 * **Filename** is markdown (.md) file where all the page links are stored, this can be useful for manual checks, e.g `file.md`
 
 ## Installation
@@ -28,7 +28,7 @@ linksta check <url> <base_url> <regex> <filename>
 **Examples**
 
 ```
-linksta check http://www.bbc.co.uk/radio http://www.bbc.co.uk/radio radio.md
+linksta check http://www.foo.co.uk/foo http://www.foo.co.uk/foo radio.md
 ```
 
 **Output**
@@ -40,9 +40,9 @@ Once running, you'll see either a 200 with `Status is 200 for <URL>` or `Status 
 ```ruby
 require 'linksta'
 
-url = 'http://www.live.bbc.co.uk/radio'
-base = 'http://www.live.bbc.co.uk'
-reg = '/radio'
+url = 'http://www.foo.co.uk/foo'
+base = 'http://www.foo.co.uk'
+reg = '/foo'
 filename = 'radio.md'
 
 page = Linksta::SaveLinks.new(url, filename)
@@ -63,7 +63,7 @@ linksta smoke test.yaml
 Example YAML Config:
 
 ```yaml
-base: 'http://www.bbc.co.uk'
+base: 'http://www.foo.co.uk'
 
 concurrency: 100
 
@@ -74,8 +74,8 @@ headers:
 status_code: 200
 
 paths:
-  - /radio
-  - /radio/new
+  - /foo
+  - /foo/new
 ```
 
 Via a Ruby script:
